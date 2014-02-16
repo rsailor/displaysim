@@ -11,8 +11,8 @@ basic graphics functions using common algorithms. The code was written in such
 a way that it may be easy to convert to embedded C for an AVR microcontroller.
 
 ### Utility
-**textohex** is a utility for converting fonts into the bitmap format used in
-displaysim. Without alteration, textohex can import any font on your system.
+**texttohex** is a utility for converting fonts into the bitmap format used in
+displaysim. Without alteration, texttohex can import any font on your system.
 You can check the available fonts using `printArray(PFont.list())`. The format
 is one pixel per bit, packed in bytes. This packing takes a few extra steps to
 interpret, but is critical for use in a microcontroller. For example, the full
