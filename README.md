@@ -70,26 +70,55 @@ corner points.
 Params - x0, y0, h, w, r, g, b  
 Desc - Draws a filled rectangle via a scanline pattern.
 
-**qCircle**
+**qCircle**  
+Params - x0, y0, rad, r, g, b   
+Desc - Draws a circle using the midpoint circle algorithm.
 
-**qCircleSolid**
+**qCircleSolid**  
+Params - x0, y0, rad, r, g, b  
+Desc - Draws a filled circle by using a modification of the midpoint
+circle algorithm that draws a line between the points on horizontally
+aligned arcs.
 
-**qEllipse**
+**qEllipse**  
+Params - x0, y0, radx, rady, r, g, b  
+Desc - Draws an ellipse by drawing two different half-circles using
+the midpoint circle algorithm.
 
-**qEllipseSolid**
+**qEllipseSolid**  
+Params - x0, y0, radx, rady, r, g, b   
+Desc - Similar to the filled circle, draws a line between the points of two
+horizontally aligned arcs. Draws two different half-circles.
 
-**qBGFill**
+**qBGFill**  
+Params - r, g, b  
+Desc - Fills the buffer with a single color.
 
-**qText**
+**qText**  
+Params - x, y, text, len, fontface, r, g, b  
+Desc - Draws a message to the screen in the specified fontface. Text will be
+drawn on a single line and is able to extend past the viewable screen. Newline
+characters are accepted and function correctly. The `len` paramater must be
+the correct length of the character array.
 
-**qTextBox**
+Each font is in the form of a byte array that represent all of the ascii
+characters of that font as bitmaps. The two included fonts are Consolas at sizes
+12 and 16.
+
+**qTextBox**  
+Params - x, y, w, h, text, len, fontface, r, g, b  
+Desc - Draws text within a rectangle. Text will wrap at its borders. Partial lines
+at the bottom will not be visible. Full words are ignored and will be split by
+the wrap. Finally, the newline character will produce unexpected results.
 
 **qImage**  
 Not yet implmented
 
-**qRefresh**
+**qRefresh**  
+Desc - Draws the buffer contents to the screen.
 
-**qClear**
+**qClear**  
+Desc - Clears the buffer to all black. This is the same as `qBGFill(0,0,0)`.
 
 #### Using the Library
 The `setup()` and `draw()` functions are the executed code, which is
