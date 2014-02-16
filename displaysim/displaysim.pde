@@ -395,36 +395,7 @@ void qClear() {
   } 
 }
 
-/**** MAIN STUFF ************************************************************/
-
-
-Pixel[] buffer;
-
-
-void setup() {
-  // Open Screen
-  size(WIDTH*SCALE,HEIGHT*SCALE);
-  
-  // Options
-  noStroke();
-  
-  // Create Buffer
-  buffer = new Pixel[HEIGHT*WIDTH];
-  for(int i = 0; i < WIDTH*HEIGHT; i++) {
-    buffer[i] = new Pixel();
-  }
-  
-  // Run Commands
-  qTriangle(70,20,20,70,50,50,0,255,0);
-  char[] msg = {'W','h','i','l','e'};
-  qText(20, 120, msg, 5, qfont_consolas_16, 255, 0, 0);
-  //qTextBox(20, 120, 14, 30, msg, 5, qfont_consolas_12, 255, 0, 0);
-  qRefresh();
-}
-
-void draw() {
-  
-}
+/* Pixel Class */
 
 class Pixel {
   int[] rgb;
@@ -444,3 +415,42 @@ class Pixel {
     rect(x,y,w,h);
   }
 }
+
+/**** MAIN STUFF ************************************************************/
+
+// Screen buffer - REQUIRED!!!
+Pixel[] buffer;
+
+// Place Global Variables Here /////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////
+
+void setup() {
+  // Open Screen
+  size(WIDTH*SCALE,HEIGHT*SCALE);
+  
+  // Options
+  noStroke();
+  
+  // Create Buffer
+  buffer = new Pixel[HEIGHT*WIDTH];
+  for(int i = 0; i < WIDTH*HEIGHT; i++) {
+    buffer[i] = new Pixel();
+  }
+  
+  // Run Commands 
+  // Type your code below here ////////////////////////
+
+  qTriangle(70,20,20,70,50,50,0,255,0);
+  char[] msg = {'W','h','i','l','e'};
+  qText(20, 120, msg, 5, qfont_consolas_16, 255, 0, 0);
+  //qTextBox(20, 120, 14, 30, msg, 5, qfont_consolas_12, 255, 0, 0);
+  qRefresh();
+}
+
+void draw() {
+  
+}
+
