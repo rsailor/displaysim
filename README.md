@@ -45,10 +45,12 @@ Params - x0, y0, x1, y1, r, g, b
 Desc - Draws a line using the Bresenham line algorithm.
 
 **qHLine**  
-Not yet implemented
+Params - x, y, len, r, g, b  
+Desc - Draws a horizontal line. More efficient than qLine.
 
 **qVLine**  
-Not yet implemented
+Params - x, y, len, r, g, b  
+Desc - Draws a vertical line. More efficient than qLine.
 
 **qTriangle**  
 Params - x0, y0, x1, y1, x2, y2, r, g, b  
@@ -110,9 +112,6 @@ Params - x, y, w, h, text, len, fontface, r, g, b
 Desc - Draws text within a rectangle. Text will wrap at its borders. Partial lines
 at the bottom will not be visible. Full words are ignored and will be split by
 the wrap. Finally, the newline character will produce unexpected results.
-
-**qImage**  
-Not yet implmented
 
 **qRefresh**  
 Desc - Draws the buffer contents to the screen.

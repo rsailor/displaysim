@@ -50,8 +50,33 @@ void qLine(int x0, int y0, int x1, int y1, int r, int g, int b) {
   }
 }
 
-/* void qHLine */
-/* void qVLine */
+// Draw a horizontal line, quicker than qLine
+void qHLine(int x, int y, int len, int r, int g, int b) {
+    int x2 = x+len;
+    if(len > 0) { 
+        for(; x <= x2; x++) {
+            qPoint(x,y,r,g,b);
+        }    
+    } else {
+        for(; x >= x2; x--) {
+            qPoint(x,y,r,g,b);
+        }
+    }
+}
+
+// Draw a verticle line, quicker than qLine
+void qVLine(int x, int y, int len, int r, int g, int b) {
+    int y2 = y+len;
+    if(len > 0) { 
+        for(; y <= y2; y++) {
+            qPoint(x,y,r,g,b);
+        }    
+    } else {
+        for(; y >= y2; y--) {
+            qPoint(x,y,r,g,b);
+        }
+    }
+}
 
 // Draw a triangle to the buffer
 void qTriangle(int x0, int y0, int x1, int y1, int x2, int y2, int r, int g, int b) {
@@ -97,16 +122,16 @@ void qTriangleSolid(int x0, int y0, int x1, int y1, int x2, int y2, int r, int g
 
 // Draw a rectangle to buffer
 void qRect(int x0, int y0, int h, int w, int r, int g, int b) {
-  qLine(x0,y0,x0+w,y0,r,g,b);
-  qLine(x0,y0,x0,y0+h,r,g,b);
-  qLine(x0+w,y0,x0+w,y0+h,r,g,b);
-  qLine(x0,y0+h,x0+w,y0+h,r,g,b);
+  qHLine(x0,y0,w,r,g,b);
+  qVLine(x0,y0,h,r,g,b);
+  qVLine(x0+w,y0,h,r,g,b);
+  qHLine(x0,y0+h,w,r,g,b);
 }
 
 // Draw a filled rectangle to the buffer
 void qRectSolid(int x0, int y0, int h, int w, int r, int g, int b) {
   for(int i = 0; i < h; i++) {
-    qLine(x0,y0+i,x0+w,y0+i,r,g,b);
+    qHLine(x0,y0+i,w,r,g,b);
   }
 }
 
@@ -147,10 +172,10 @@ void qCircleSolid(int x0, int y0, int rad, int r, int g, int b) {
   
   while (x >= y) {
     if(y != prevy) {
-      qLine(x + x0, y + y0, -x + x0, y + y0, r,g,b);
-      qLine(y + x0, x + y0, -y + x0, x + y0, r,g,b);
-      qLine(-x + x0, -y + y0, x + x0, -y + y0, r,g,b);
-      qLine(-y + x0, -x + y0, y + x0, -x + y0, r,g,b);
+      qHLine(x + x0, y + y0, -2*x, r,g,b);
+      qHLine(y + x0, x + y0, -2*y, r,g,b);
+      qHLine(-x + x0, -y + y0, 2*x, r,g,b);
+      qHLine(-y + x0, -x + y0, 2*y, r,g,b);
       prevy = y;
     }
     y++;
@@ -368,13 +393,6 @@ void qTextBox(int x, int y, int w, int h, char[] text, int len, int[] fontface, 
 }
     
 
-/* Image Render */
-
-// To be implemented
-void qImage(int x, int y, int[] img_data) {
-  
-}
-
 // Draws the buffer contents to the screen
 void qRefresh() {
   for(int i = 0; i < WIDTH*HEIGHT; i++) {
@@ -442,11 +460,12 @@ void setup() {
   
   // Run Commands 
   // Type your code below here ////////////////////////
-
-  qTriangle(70,20,20,70,50,50,0,255,0);
-  char[] msg = {'W','h','i','l','e'};
-  qText(20, 120, msg, 5, qfont_consolas_16, 255, 0, 0);
-  //qTextBox(20, 120, 14, 30, msg, 5, qfont_consolas_12, 255, 0, 0);
+  qRectSolid(5,5,20,117,200,100,200);
+  qHLine(50,100,-50,0,100,0);
+  qVLine(50,70,20,0,255,0);
+  qCircleSolid(60, 60, 15, 200, 200, 100);
+  char[] msg = {'D','i','s','p','l','a','y','s','i','m'};
+  qText(10, 5, msg, 10, qfont_consolas_16, 255, 180, 0);
   qRefresh();
 }
 
